@@ -47,7 +47,7 @@ jobs:
             with:
               context: ./api_yamdb
               push: true
-              tags: mihalev/api_yamdb:latest
+              tags: mihalev/api_yamdb:v2.11.1989
     deploy:
       runs-on: ubuntu-latest
       needs: build_and_push_to_docker_hub
