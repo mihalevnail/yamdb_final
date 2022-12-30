@@ -1,7 +1,6 @@
 from django.conf import settings
 from django.core.validators import MaxValueValidator, MinValueValidator
 from rest_framework import serializers
-
 from reviews.models import Comment, Review
 from titles.models import Category, Genre, Title
 from users.models import CustomUser
