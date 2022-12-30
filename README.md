@@ -18,7 +18,7 @@
 1. Клонировать репозиторий:
 
 ```
-git clone https://github.com/airatbakiev/yamdb_final.git
+git clone https://github.com/mihalevnail/yamdb_final.git
 ```
 
 2. Добавить в клонированный репозиторий секреты (Settings/Secrets):
