@@ -1,6 +1,7 @@
 # yamdb_final
 yamdb_final
-![finaltask](https://github.com/mihalev/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg)
+![finalworkflow](https://github.com/mihalev/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg)
+https://github.com/<OWNER>/<REPOSITORY>/actions/workflows/<WORKFLOW_FILE>/badge.svg
 
 ## Что это за проект?
 
