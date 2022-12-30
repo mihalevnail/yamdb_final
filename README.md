@@ -1,7 +1,7 @@
 # yamdb_final
-yamdb_final
+
+
 ![finalworkflow](https://github.com/mihalev/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg)
-https://github.com/<OWNER>/<REPOSITORY>/actions/workflows/<WORKFLOW_FILE>/badge.svg
 
 ## Что это за проект?
 
@@ -12,66 +12,99 @@ https://github.com/<OWNER>/<REPOSITORY>/actions/workflows/<WORKFLOW_FILE>/badge.
 > Все данные возвращаются в формате JSON
 ```
 
+
 ## Как запустить проект:
 
-### Клонировать репозиторий и перейти в него в командной строке:
+1. Клонировать репозиторий:
 
 ```
-git clone https://github.com/mihalevnail/infra_sp2.git
-cd infra_sp2
+git clone https://github.com/airatbakiev/yamdb_final.git
 ```
 
-### Перейти в папку infra и создайте файл .env со следующими парметрами:
+2. Добавить в клонированный репозиторий секреты (Settings/Secrets):
 
 ```
-    >DB_ENGINE=django.db.backends.postgresql
-    >DB_NAME= # название БД
-    >POSTGRES_USER= # ваше имя пользователя
-    >POSTGRES_PASSWORD= # пароль для доступа к БД
-    >DB_HOST=db
-    >DB_PORT=5432
-    >SECRET=секрет Джанго
+Переменная: USER, значение: <имя пользователя для подключения к серверу>
+```
+```
+Переменная: HOST, значение: <публичный ip-адрес сервера>
+```
+```
+Переменная: SSH, значение: <закрытый ssh-ключ для подключения к серверу>
+```
+```
+Переменная: PASSPHRASE, значение: <пароль, если ssh-ключ защищён паролем>
+```
+```
+Переменная: DOCKER_USERNAME, значение: <имя пользователя для поключения к DockerHub>
+```
+```
+Переменная: DOCKER_PASSWORD, значение: <пароль для поключения к DockerHub>
+```
+```
+Переменная: DB_ENGINE, значение: django.db.backends.postgresql
+```
+```
+Переменная: DB_HOST, значение: db
+```
+```
+Переменная: DB_NAME, значение: postgres
+```
+```
+Переменная: DB_PORT, значение: 5432
+```
+```
+Переменная: POSTGRES_USER, значение: postgres
+```
+```
+Переменная: POSTGRES_PASSWORD, значение: postgres
+```
+```
+Переменная: TELEGRAM_TO, значение: <токен Вашего телеграм-аккаунта>
+```
+```
+Переменная: TELEGRAM_TOKEN, значение: <токен Вашего телеграм-бота>
 ```
 
-### Запустите docker-compose.yaml (при установленном и запущенном Docker):
+3. В файле 
+```
+/infra/nginx/default.conf
+```
+в строке 'server_name <ip-адрес>' указать публичный ip-адрес сервера
+
+4. Скопировать на сервер файлы:
 
 ```
-cd infra_sp2/infra
-docker-compose up
+cd infra
 ```
-
-### Для пересборки контейнеров выполнять команду: (находясь в папке infra, при запущенном Docker):
-
 ```
-docker-compose up -d --build
+scp docker-compose.yaml <пользователь_сервера>@<ip-адрес сервера>:/home/<домашняя папка>
 ```
-
-### Выполнить миграции:
-
 ```
-docker-compose exec web python manage.py migrate
+scp -r /nginx <пользователь_сервера>@<ip-адрес сервера>:/home/<домашняя папка>
 ```
+5. На сервере установить пакеты docker.io и docker-compose v2.6.1
 
-### Далее необходимо создать супервользователя:
+6. Запушить проект на удалённый репозиторий:
 
 ```
-docker-compose exec web python manage.py createsuperuser
+git add .
+```
+```
+git commit -m '<comment>'
+```
+```
+git push
 ```
 
-### Необходимо собрать статику:
+7. Подключиться к серверу и создать суперпользователя в контейнере web:
 
 ```
-docker-compose exec web python manage.py collectstatic --no-input
+ssh <пользователь>@<ip-адрес сервера>
 ```
-
-### Для проверки работоспособности приложения перейдите по ссылке:
-
 ```
- http://localhost/admin/
+sudo docker-compose exec web python manage.py createsuperuser
 ```
-
-## Документация:
-> Находится на эндпоинте: http://127.0.0.1:8000/redoc/ с примерами ответов API
 
 ## Авторы проекта:
 > Mikhalev Nail
