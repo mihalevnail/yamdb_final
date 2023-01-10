@@ -1,4 +1,4 @@
-# yamdb_final http://51.250.99.0/admin/
+# yamdb_final http://158.160.12.214/admin/
 
 ![finalworkflow](https://github.com/mihalevnail/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg)
 ## Что это за проект?
